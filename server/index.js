@@ -2,8 +2,10 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
 import express from "express";
+import { Provider } from "react-redux";
 import App from "../src/App";
 import { StaticRouter } from "react-router-dom";
+import store from "../src/store/store";
 
 const app = express();
 app.use(express.static("public")); //注意这里用的是public下的静态文件，是client端打包的目录  这样就和client端关联起来了
@@ -12,7 +14,10 @@ app.get("*", (req, res) => {
   // const Page = <App title="张三"></App>;
   // 把react组件解析成html
   const content = renderToString(
-    <StaticRouter location={req.url}>{App}</StaticRouter> //这边别忘记给location
+    <Provider store={store}>
+      {/* 这边别忘记给location */}
+      <StaticRouter location={req.url}>{App}</StaticRouter>
+    </Provider>
   );
   // 字符串模板
   res.send(`
