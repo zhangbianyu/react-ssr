@@ -5,10 +5,11 @@ import { getIndexList } from "../store/index";
 function Index(props) {
   // console.log(props);
   let [count, setCount] = useState(1);
-
-  useEffect(() => {
-    props.getIndexList();
-  }, []);
+  // console.log("props.list", props.list);
+  // useEffect(() => {
+  //   const getindex = props.getIndexList();
+  //   // console.log("getindex", getindex);
+  // }, []);
   return (
     <div>
       <h1>
@@ -30,6 +31,10 @@ function Index(props) {
     </div>
   );
 }
+
+Index.loadData = (store) => {
+  return store.dispatch(getIndexList());
+};
 
 export default connect((state) => ({ list: state.index.list }), {
   getIndexList,
