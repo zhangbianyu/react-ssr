@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import routes from "../src/App";
 import { StaticRouter, matchPath, Route } from "react-router-dom";
 import { getServerStore } from "../src/store/store";
+import Header from "../src/component/Header";
 
 const store = getServerStore();
 const app = express();
@@ -37,6 +38,7 @@ app.get("*", (req, res) => {
         {/* 这边别忘记给location */}
         <StaticRouter location={req.url}>
           {/* {App} */}
+          <Header></Header>
           {routes.map((route) => (
             <Route {...route}></Route>
           ))}
