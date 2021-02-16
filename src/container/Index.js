@@ -6,10 +6,14 @@ function Index(props) {
   // console.log(props);
   let [count, setCount] = useState(1);
   // console.log("props.list", props.list);
-  // useEffect(() => {
-  //   const getindex = props.getIndexList();
-  //   // console.log("getindex", getindex);
-  // }, []);
+  useEffect(() => {
+    // const getindex = props.getIndexList();
+    // console.log("getindex", getindex);
+    if (!props.list.length) {
+      // 客户端获取数据
+      props.getIndexList();
+    }
+  }, []);
   return (
     <div>
       <h1>

@@ -34,7 +34,7 @@ app.get("*", (req, res) => {
     // const Page = <App title="张三"></App>;
     // 把react组件解析成html
     const content = renderToString(
-      <Provider store={getServerStore()}>
+      <Provider store={store}>
         {/* 这边别忘记给location */}
         <StaticRouter location={req.url}>
           {/* {App} */}
