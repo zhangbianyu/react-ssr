@@ -23,6 +23,20 @@ module.exports = {
           presets: ["@babel/preset-react", "@babel/preset-env"],
         },
       },
+      {
+        test: /\.css$/,
+        // 从右向左解析，isomorphic-style-loader server端用这个解析style
+        use: [
+          "isomorphic-style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              esModule: false,
+            },
+          },
+        ],
+      },
     ],
   },
 };
